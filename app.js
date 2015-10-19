@@ -11,7 +11,6 @@ var users = require('./routes/users');
 var User = require('./lib/user.js');
 
 var passport = require('passport');
-// var expressSession = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
