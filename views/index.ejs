@@ -1,0 +1,22 @@
+<% include head %>
+<% include header %>
+
+<div class="c80 ma">
+    <div id="login" class="box c33 ma ">
+        <h1>Login</h1>
+
+        <form action="/login" method="post">
+            <fieldset>
+                <legend></legend>
+                <label for="username">Username</label>
+                <input type="text"  id="username" name="username" autofocus /><br />
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" /><br/>
+                <input id="submit" class="submit" name="submit" type="submit" value="Sign In" />
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<% include footer %>

@@ -1,0 +1,23 @@
+<% include head %>
+<% include header %>
+
+<div class="c80 ma">
+    <div id="add" class="box c66">
+            <h1>Quick Add</h1>
+
+            <form action="/add" method="post">
+                <fieldset>
+                    <legend></legend>
+                    <input type="date">
+                    <label for="log">Log</label>
+                    <textarea name="log" rows="4" cols="50"></textarea><br />
+                    <label for="labels">Labels</label>
+                    <input type="text" name="labels" />
+                    <input id="submit" class="submit" name="submit" type="submit" value="Submit" />
+
+                </fieldset>
+            </form>
+    </div>
+</div>
+
+<% include footer %>

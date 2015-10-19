@@ -1,0 +1,17 @@
+<div id="cont_topbar" class="c100">
+    <div id="topbar" class="c80">
+        <div id="nav_topbar">
+            <%if (page == 'welcome') {%>
+            <a href="/register">Register</a>
+            <% } %>
+            <%if (page != 'welcome') { %>
+            <a href="/add">Quick Add</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="#">Settings</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="#">Privacy</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="#">Help</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="/logout">Logout</a>
+            <% } %>
+        </div>
+        <div class="logo"><a href="/">Life<span class="track">Track</span></a></div>
+	</div>
+</div>
