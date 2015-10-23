@@ -11,9 +11,17 @@ var User = require('./lib/user.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var helmet = require('helmet');
+var Datastore = require('nedb');
 
 var app = express();
 
+// Db
+global.ltdb = {};
+ltdb.users = new Datastore({ filename: 'db/users.db', autoload: true });
+// ltdb.lt = new Datastore({ filename: 'db/lt.db', autoload: true });
+ltdb.logs = new Datastore({ filename: 'db/logs.db', autoload: true });
+
+// Passport
 passport.serializeUser(function(user, done) {
   done(null, user._id);
 });
@@ -39,6 +47,11 @@ passport.use(new LocalStrategy(
   }
 ));
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/')
+}
+
 // Security
 app.use(helmet());
 
@@ -53,21 +66,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Configuring Passport
 app.use(session({
   secret: 'vladivostok',
   saveUninitialized: true,
   resave: true,
   // using store session on MongoDB using express-session + connect
 }));
-// Configuring Passport
-
 app.use(passport.initialize());
 app.use(passport.session());
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/')
-}
+// Ensure auth
 app.all('*', function(req,res,next){
   if (req.path === '/' ||
       req.path === '/login' ||
@@ -76,9 +86,11 @@ app.all('*', function(req,res,next){
   } else ensureAuthenticated(req,res,next);
 });
 
+// Route entry points
 app.use('/', routes);
 app.use('/users', users);
 
+// Login/Logout
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/home',
                                    failureRedirect: '/error',
