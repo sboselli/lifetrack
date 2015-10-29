@@ -21,12 +21,15 @@ router.get('/add', function(req, res, next) {
 router.post('/add', function(req, res, next) {
 
   var logDate = moment(req.body.date);
+  var ldate = new Date(req.body.date);
+  ldate = ldate.toUTCString();
 
   // prepare log data
   var log = {
     'user': req.user._id,
     'date': {
-      'iso': new Date(req.body.date),
+      'iso': ldate,
+      // 'iso': new Date(Date.UTC(2015, 9, 25, 0, 0, 0)),
       'unix': new Date(req.body.date).getTime(),
       'moment': logDate,
       'second': logDate.seconds(),
@@ -42,6 +45,11 @@ router.post('/add', function(req, res, next) {
       'month': logDate.month(),
       'quarter': logDate.quarter(),
       'year': logDate.year()
+    },
+    'reqData': {
+      'ip': req.ip,
+      'secure': req.secure,
+      'xhr': req.xhr
     },
     'dateAdded': Date.now(),
     'log': req.body.logcontent,

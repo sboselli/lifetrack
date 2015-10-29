@@ -12,6 +12,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var helmet = require('helmet');
 var Datastore = require('nedb');
+var geoip = require('geoip-lite');
 
 var app = express();
 
@@ -76,6 +77,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// GeoIP
+app.all('*', function(req,res,next){
+  req.geoip = geoip.lookup(req.ip);
+});
 
 // Ensure auth
 app.all('*', function(req,res,next){

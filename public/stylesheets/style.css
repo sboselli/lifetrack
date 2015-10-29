@@ -32,27 +32,25 @@ body {
 img {
 	max-width: 100%;
 }
-.clear {
-	clear:both;
-}
-.c100 {	width:100%;}
-.c90 { width:90%;}
-.c80 { width:80%;}
-.c75 { width:75%;}
-.c70 { width:70%;}
-.c66 { width:66%;}
-.c60 { width:60%;}
-.c50 { width:50%;}
-.c40 { width:40%;}
-.c33 { width:33%;}
-.c30 { width:30%;}
-.c24 { width:24%;}
-.c20 { width:20%;}
-.c10 { width:10%;}
-.c8 { width:8%;}
-.c5 { width:5%;}
-.c2 { width:2%;}
-.c1 { width:1%;}
+.clear { clear:both; }
+.c100 {	width:100%; }
+.c90 { width:90%; }
+.c80 { width:80%; }
+.c75 { width:75%; }
+.c70 { width:70%; }
+.c66 { width:66%; }
+.c60 { width:60%; }
+.c50 { width:50%; }
+.c40 { width:40%; }
+.c33 { width:33%; }
+.c30 { width:30%; }
+.c24 { width:24%; }
+.c20 { width:20%; }
+.c10 { width:10%; }
+.c8 { width:8%; }
+.c5 { width:5%; }
+.c2 { width:2%; }
+.c1 { width:1%; }
 a {
 	text-decoration:none;
 	color: #666;
@@ -79,10 +77,10 @@ h1 {
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;
 }
-.ma { margin: 0 auto;}
-.fl { float:left;}
-.fr { float:right;}
-.clear { clear:both;}
+.ma { margin: 0 auto; }
+.fl { float:left; }
+.fr { float:right; }
+.clear { clear:both; }
 input[type='text'],
 input[type='date'],
 input[type='password'],
