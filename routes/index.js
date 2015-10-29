@@ -47,7 +47,9 @@ router.post('/add', function(req, res, next) {
       'year': logDate.year()
     },
     'reqData': {
-      'ip': req.ip,
+      'ip': req.ipv4,
+      'ipv6': req.ipv6,
+      'geo': req.geo,
       'secure': req.secure,
       'xhr': req.xhr
     },

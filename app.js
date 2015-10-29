@@ -80,11 +80,19 @@ app.use(passport.session());
 
 // GeoIP
 app.all('*', function(req,res,next){
-  req.geoip = geoip.lookup(req.ip);
+  if (req.ip.indexOf(':') != -1) {
+    req.ipv6 = req.ip;
+
+    var ip = req.ip.split(':');
+    req.ipv4 = ip[ip.length-1];
+  }
+  req.geo = geoip.lookup(req.ipv4) || false;
+  next();
 });
 
 // Ensure auth
 app.all('*', function(req,res,next){
+  console.log(req.geo);
   if (req.path === '/' ||
       req.path === '/login' ||
       req.path === '/register') {
