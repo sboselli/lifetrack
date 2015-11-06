@@ -2,21 +2,42 @@
 <% include header %>
 
 <div class="c80 ma">
-    <div id="register" class="box c33 ma">
-        <h1>Register</h1>
+  <div id="register" class="box c33 ma">
+    <h1>Register</h1>
 
-        <form action="/register" method="post">
-            <fieldset>
-                <legend></legend>
-                <label for="username">Username</label>
-                <input type="text"  id="username" name="username" autofocus /><br />
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" /><br/>
-                <input id="submit" class="submit" name="submit" type="submit" value="Register" />
+    <form action="/register" method="post">
+      <fieldset>
+        <legend></legend>
+        <div>
+          <label for="name">Name</label>
+          <input type="text"  id="name" name="name" autofocus />
+        </div>
+        <div>
+          <label for="lastname">Last Name</label>
+          <input type="text"  id="lastname" name="lastname" autofocus />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="text"  id="email" name="email" autofocus />
+        </div>
+        <div>
+          <label for="username">Username</label>
+          <input type="text"  id="username" name="username" autofocus />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" />
+        </div>
+        <div>
+          <label for="born">Date born</label>
+          <input type="date"  id="born" name="born" />
+        </div>
 
-            </fieldset>
-        </form>
-    </div>
+        <input id="submit" class="submit" name="submit" type="submit" value="Register" />
+
+      </fieldset>
+    </form>
+  </div>
 </div>
 
 <% include footer %>

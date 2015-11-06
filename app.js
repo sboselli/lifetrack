@@ -92,7 +92,6 @@ app.all('*', function(req,res,next){
 
 // Ensure auth
 app.all('*', function(req,res,next){
-  console.log(req.geo);
   if (req.path === '/' ||
       req.path === '/login' ||
       req.path === '/register') {

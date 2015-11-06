@@ -7,44 +7,43 @@ var moment = require('moment');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
-  	page: 'welcome',
-  	title: 'Express'
+    page: 'welcome',
+    title: 'Express'
   });
 });
 
 router.get('/add', function(req, res, next) {
   res.render('add', {
-  	page: 'add',
-  	title: 'Express'
+    page: 'add',
+    title: 'Express'
   });
 });
 router.post('/add', function(req, res, next) {
 
-  var logDate = moment(req.body.date);
-  var ldate = new Date(req.body.date);
-  ldate = ldate.toUTCString();
+  var logMoment = moment(req.body.date);
+  var logDate = new Date(req.body.date);
+  logDate = logDate.toUTCString();
 
   // prepare log data
   var log = {
     'user': req.user._id,
     'date': {
-      'iso': ldate,
-      // 'iso': new Date(Date.UTC(2015, 9, 25, 0, 0, 0)),
+      'iso': logDate,
       'unix': new Date(req.body.date).getTime(),
-      'moment': logDate,
-      'second': logDate.seconds(),
-      'minute': logDate.minutes(),
-      'hour': logDate.hours(),
-      'dateOfMonth': logDate.date(),
-      'dayOfWeek': logDate.day(),
-      'dayOfWeekLocale': logDate.weekday(),
-      'dayOfWeekIso': logDate.isoWeekday(),
-      'dayOfYear': logDate.dayOfYear(),
-      'weekOfYear': logDate.week(),
-      'weekOfYearIso': logDate.isoWeek(),
-      'month': logDate.month(),
-      'quarter': logDate.quarter(),
-      'year': logDate.year()
+      'moment': logMoment,
+      'second': logMoment.seconds(),
+      'minute': logMoment.minutes(),
+      'hour': logMoment.hours(),
+      'dateOfMonth': logMoment.date(),
+      'dayOfWeek': logMoment.day(),
+      'dayOfWeekLocale': logMoment.weekday(),
+      'dayOfWeekIso': logMoment.isoWeekday(),
+      'dayOfYear': logMoment.dayOfYear(),
+      'weekOfYear': logMoment.week(),
+      'weekOfYearIso': logMoment.isoWeek(),
+      'month': logMoment.month(),
+      'quarter': logMoment.quarter(),
+      'year': logMoment.year()
     },
     'reqData': {
       'ip': req.ipv4,
@@ -69,49 +68,84 @@ router.post('/add', function(req, res, next) {
 
 router.get('/register', function(req, res, next) {
   res.render('register', {
-  	page: 'welcome',
-  	title: 'Express'
+    page: 'welcome',
+    title: 'Express'
   });
 });
 router.post('/register', function(req, res, next) {
   // Get user input
-	var user = {
-		'username': req.body.username,
-		'password': req.body.password
-	}
+  var bornMoment = moment(req.body.born);
+  var bornDate = new Date(req.body.born);
+  bornDate = bornDate.toUTCString();
+
+  var user = {
+    'name': req.body.name,
+    'lastName': req.body.lastname,
+    'email': req.body.email,
+    'username': req.body.username,
+    'password': req.body.password,
+    'born': {
+      'iso': bornDate,
+      'unix': new Date(req.body.born).getTime(),
+      'moment': bornMoment,
+      'second': bornMoment.seconds(),
+      'minute': bornMoment.minutes(),
+      'hour': bornMoment.hours(),
+      'dateOfMonth': bornMoment.date(),
+      'dayOfWeek': bornMoment.day(),
+      'dayOfWeekLocale': bornMoment.weekday(),
+      'dayOfWeekIso': bornMoment.isoWeekday(),
+      'dayOfYear': bornMoment.dayOfYear(),
+      'weekOfYear': bornMoment.week(),
+      'weekOfYearIso': bornMoment.isoWeek(),
+      'month': bornMoment.month(),
+      'quarter': bornMoment.quarter(),
+      'year': bornMoment.year()
+    },
+    'dateAdded': Date.now(),
+    'reqData': {
+      'ip': req.ipv4,
+      'ipv6': req.ipv6,
+      'geo': req.geo,
+      'secure': req.secure,
+      'xhr': req.xhr
+    }
+  }
 
   // Add user
-	User.add(user, function(err, user) {
-		if (!err) {
-		  res.redirect('/home');
-		} else {
-			res.send(err);
-		}
+  User.add(user, function(err, user) {
+    if (!err) {
+      res.redirect('/home');
+    } else {
+      res.send(err);
+    }
 
-	})
+  })
 });
 
 router.get('/home', function(req, res, next) {
 
   // Get user's logs
   var user = req.user._id;
+  console.log(req.user);
   lt.getAllLogs(user, function(err, logs) {
     if (err) res.send(err);
 
-    console.log(logs);
-
     res.render('home', {
-    	page: 'home',
-    	title: 'Express',
-      logs: logs
+      page: 'home',
+      title: 'Express',
+      logs: logs,
+      name: req.user.name,
+      lastName: req.user.lastName,
+      born: req.user.born
     });
   });
 
 });
 router.get('/error', function(req, res, next) {
   res.render('error', {
-  	page: 'error',
-  	title: 'Express'
+    page: 'error',
+    title: 'Express'
   });
 });
 module.exports = router;

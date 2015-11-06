@@ -93,18 +93,39 @@ textarea {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;
+    height:32px;
+}
+
+input[type='date'] {
+	height:; 22px;
 }
 input[type='submit'] {
+	color:#666;
 	margin-top:20px;
 	padding:5px;
 	width:100%;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;
+    height:40px;
+    background-color: #f8f8f8;
+    border:1px solid #c8c8c8;
+    cursor: pointer;
+}
+input[type='submit']:hover {
+	background-color: #f1f1f1;
+	color:#2f2f2f;
 }
 label {
 	display:block;
 	margin-bottom:4px;
+}
+
+.form-add-date {
+	margin-right:10px;
+}
+.form-add-textarea {
+	height:220px;
 }
 /***************************************  topbar */
 #cont_topbar {
@@ -146,6 +167,11 @@ label {
 	width:80%;
 	margin:0 auto;
 }
+/***************************************  lifeline-canvas */
+#lifeline-canvas {
+	width: 100%;
+}
+
 /***************************************  lifeline */
 #lifeline {
 	margin-bottom:80px;

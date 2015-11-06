@@ -2,22 +2,29 @@
 <% include header %>
 
 <div class="c80 ma">
-    <div id="add" class="box c66">
-            <h1>Quick Add</h1>
+  <div id="add" class="box c66">
+    <h1>Quick Add</h1>
 
-            <form action="/add" method="post">
-                <fieldset>
-                    <legend></legend>
-                    <input type="date" name="date">
-                    <label for="log">Log</label>
-                    <textarea name="logcontent" rows="4" cols="50"></textarea><br />
-                    <label for="labels">Labels</label>
-                    <input type="text" name="labels" />
-                    <input id="submit" class="submit" name="submit" type="submit" value="Submit" />
-
-                </fieldset>
-            </form>
-    </div>
+    <form action="/add" method="post">
+      <fieldset>
+        <legend></legend>
+        <div class="form-add-date fl">
+          <label for="date">Date</label>
+          <input type="date" name="date">
+        </div>
+        <div class="form-add-labels fl">
+          <label for="labels">Labels</label>
+          <input type="text" name="labels" />
+        </div>
+        <div class="clear"></div>
+        <div>
+          <label for="log">Log</label>
+          <textarea class="form-add-textarea" name="logcontent" rows="4" cols="50"></textarea>
+        </div>
+        <input id="submit" class="submit" name="submit" type="submit" value="Submit" />
+      </fieldset>
+    </form>
+  </div>
 </div>
 
 <% include footer %>
